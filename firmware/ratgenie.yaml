@@ -1,0 +1,88 @@
+esphome:
+  name: ratgenie
+  friendly_name: RatGenie
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+logger:
+
+api:
+  encryption:
+    key: !secret api_encryption_key
+
+ota:
+  encryption:
+    key: !secret ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: "ratgenie fallback"
+    password: !secret fallback_password
+
+captive_portal:
+
+binary_sensor:
+  - platform: template
+    name: "Garage Door Open"
+    id: garage_door_open
+    device_class: opening
+
+sensor:
+  - platform: ultrasonic
+    trigger_pin: GPIO13
+    echo_pin: GPIO12
+    id: garage_distance
+    update_interval: 500ms
+    on_value:
+      then:
+        - if:
+            condition:
+              sensor.in_range:
+                id: garage_distance
+                above: 1.0
+            then:
+              - binary_sensor.template.publish:
+                  id: garage_door_open
+                  state: true
+            else:
+              - binary_sensor.template.publish:
+                  id: garage_door_open
+                  state: false
+
+switch:
+  - platform: gpio
+    pin: GPIO26
+    id:door_relay
+    name: "door relay"
+    restore_mode: ALWAYS_OFF
+
+cover:
+  -platform: template
+    name: "Garage Door"
+    device_class: garage
+    lambda: |-
+      if (id(garage_door_open).state) {
+        return COVER_OPEN;
+      } else {
+        return COVER_CLOSED;
+      }
+    open_action:
+      - switch.turn_on: door_relay
+      - delay: 500ms
+      - switch.turn_off: door_relay
+    close_action:
+      - switch.turn_on: door_relay
+      - delay: 500ms
+      - switch.turn_off: door_relay
+    stop_action:
+      - switch.turn_on: door_relay
+      - delay: 500ms
+      - switch.turn_off: door_relay
+  filters:
+    - delayed_on: 500ms
+    - delayed_off: 500ms  
