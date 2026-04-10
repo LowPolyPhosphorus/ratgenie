@@ -23,7 +23,12 @@ inspired by [ratgdo](https://github.com/PaulWieland/ratgdo) by Paul Wieland, whi
 - 5V single channel optocoupler relay module
 - some wire
 
-full BOM with links available in [BOM.csv](BOM.csv)
+## bill of materials
+| part | quantity | link |
+|------|----------|------|
+| ESP32-WROOM | 1 | owned |
+| HC-SR04 ultrasonic sensor | 1 | owned |
+| 5V single channel optocoupler relay module | 1 | [aliexpress](https://www.aliexpress.us/item/3256806393437087.html) |
 
 ## tested on
 - Genie MachForce Connect Model 4063-TNMSV
