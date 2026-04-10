@@ -29,7 +29,7 @@ full BOM with links available in [BOM.csv](BOM.csv)
 - Genie MachForce Connect Model 4063-TNMSV
 
 ## not tested on
-literally everything else. if it works on your opener, open an issue and let me know and i'll add it to the list.
+literally everything else. if you make it and it works on your opener, open an issue and let me know and i'll add it to the list.
 
 ## credits
 - [ratgdo](https://github.com/PaulWieland/ratgdo) by Paul Wieland for the concept and inspiration
