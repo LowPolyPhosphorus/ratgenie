@@ -14,8 +14,8 @@ api:
     key: !secret api_encryption_key
 
 ota:
-  encryption:
-    key: !secret ota_password
+  - platform: esphome
+    password: !secret ota_password
 
 wifi:
   ssid: !secret wifi_ssid
@@ -38,6 +38,9 @@ sensor:
     echo_pin: GPIO12
     id: garage_distance
     update_interval: 500ms
+    filters:
+      - delayed_on: 500ms
+      - delayed_off: 500ms
     on_value:
       then:
         - if:
@@ -57,20 +60,14 @@ sensor:
 switch:
   - platform: gpio
     pin: GPIO26
-    id:door_relay
+    id: door_relay
     name: "door relay"
     restore_mode: ALWAYS_OFF
 
 cover:
-  -platform: template
-    name: "Garage Door"
+  - platform: template
+    name: "garage door"
     device_class: garage
-    lambda: |-
-      if (id(garage_door_open).state) {
-        return COVER_OPEN;
-      } else {
-        return COVER_CLOSED;
-      }
     open_action:
       - switch.turn_on: door_relay
       - delay: 500ms
@@ -83,6 +80,37 @@ cover:
       - switch.turn_on: door_relay
       - delay: 500ms
       - switch.turn_off: door_relay
-  filters:
-    - delayed_on: 500ms
-    - delayed_off: 500ms  
+    optimistic: true  
+
+light:
+  - platform: status_led
+    id: ratgenie_status
+    name: "ratgenie status"
+    pin:
+      number: GPIO2
+      inverted: true
+
+interval:
+  - interval: 5s 
+    then:
+      - if:
+          condition:
+            wifi.connected:
+          then:
+            - light.turn_on:
+                id: ratgenie_status
+                flash_length: 100ms
+          else:
+            - light.turn_off: ratgenie_status
+
+button:
+  - platform: restart
+    name: "ratgenie restart"
+
+  - platform: template
+    name: "trigger door"
+    on_press:
+      then:
+        - switch.turn_on: door_relay
+        - delay: 500ms
+        - switch.turn_off: door_relay
