@@ -32,31 +32,6 @@ binary_sensor:
     id: garage_door_open
     device_class: opening
 
-sensor:
-  - platform: ultrasonic
-    trigger_pin: GPIO13
-    echo_pin: GPIO12
-    id: garage_distance
-    update_interval: 500ms
-    filters:
-      - delayed_on: 500ms
-      - delayed_off: 500ms
-    on_value:
-      then:
-        - if:
-            condition:
-              sensor.in_range:
-                id: garage_distance
-                above: 1.0
-            then:
-              - binary_sensor.template.publish:
-                  id: garage_door_open
-                  state: true
-            else:
-              - binary_sensor.template.publish:
-                  id: garage_door_open
-                  state: false
-
 switch:
   - platform: gpio
     pin: GPIO26
