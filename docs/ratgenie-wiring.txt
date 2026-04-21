@@ -1,17 +1,17 @@
 ESP32-WROOM          HC-SR04
 -----------          -------
-3V3  ------------>   VCC
-GND  ------------>   GND
-D13  ------------>   TRIG
-D12  ------------>   ECHO
+3V3  ----------->   VCC
+GND  ----------->   GND
+D13  ----------->   TRIG
+D12  ----------->   ECHO
 
 ESP32-WROOM          RELAY MODULE
 -----------          ------------
-VIN  ------------>   DC+
-GND  ------------>   DC-
-D26  ------------>   IN
+VIN  ----------->   DC+
+GND  ----------->   DC-
+D26  ----------->   IN
 
 RELAY MODULE         GARAGE OPENER
 ------------         -------------
-COM  ------------>   WALL BUTTON TERMINAL 1
-NO   ------------>   WALL BUTTON TERMINAL 2
+COM  ----------->   WALL BUTTON TERMINAL 1
+NO   ----------->   WALL BUTTON TERMINAL 2
