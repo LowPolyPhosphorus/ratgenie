@@ -30,3 +30,4 @@ See [wiring diagram](../images/wiring.svg) for full wiring details. The relay CO
 - PlatformIO cannot handle spaces in file paths on Windows. Keep the firmware folder at a path with no spaces like `C:\firmware`
 - GPIO12 and GPIO2 are strapping pins and will show warnings during compile, this is expected and safe to ignore
 - The ultrasonic sensor is optional for v1, the cover entity uses optimistic mode by default
+- A custom built tilt and acceleration sensor for direct integration into the ratgenie is in the works! (ultrasonic sensor may be deprecated because it is overly complicated to wire it all the way to the door from the button)
