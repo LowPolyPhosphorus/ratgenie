@@ -39,3 +39,14 @@ literally everything else. if you make it and it works on your opener, open an i
 ## credits
 - [ratgdo](https://github.com/PaulWieland/ratgdo) by Paul Wieland for the concept and inspiration
 - [ESPHome](https://esphome.io/) for making this not a nightmare to implement
+## Gallery
+
+<img src="https://stasis.hackclub-assets.com/images/1775941044733-2rdv6r.png" alt="image"/>
+<img src="https://stasis.hackclub-assets.com/images/1775941635940-lhmqtl.png" alt="image"/>
+<img src="https://stasis.hackclub-assets.com/images/1775786781729-6zog70.png" alt="image"/>
+<img src="https://stasis.hackclub-assets.com/images/1775942244002-s1wxlb.png" alt="image"/>
+
+> ^^ your physical button should look like this in the back for this to work (two screw posts) ^^
+
+<img src="https://stasis.hackclub-assets.com/images/1775945220615-biijak.png" alt="image"/>
+<img src="https://stasis.hackclub-assets.com/images/1775944886375-aou5ls.png" alt="image"/>
