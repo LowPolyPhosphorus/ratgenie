@@ -13,7 +13,7 @@ inspired by [ratgdo](https://github.com/PaulWieland/ratgdo) by Paul Wieland, whi
 
 ## what does it do?
 - opens and closes your garage door from Home Assistant
-- detects door open/closed state using an HC-SR04 ultrasonic sensor mounted on the ceiling
+- detects door open/closed state using an HC-SR04 ultrasonic sensor mounted on the ceiling (soon to be replaced by ESP32 and MCU-6050 project)
 - triggers the door by momentarily shorting the wall button terminals through a relay, exactly like pressing the button yourself
 - runs on ESPHome, so Home Assistant autodiscovers it over MQTT with zero configuration
 
